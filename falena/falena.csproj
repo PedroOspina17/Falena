@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-falena-3CA18D45-3EDD-45CB-A3C3-0600E6ECFEFE</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20200820012250_Products.cs" />
+    <Compile Remove="Data\Migrations\20200820012250_Products.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200820020150_Employees.cs" />
+    <Compile Remove="Data\Migrations\20200820020150_Employees.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200820030727_Transactions.cs" />
+    <Compile Remove="Data\Migrations\20200820030727_Transactions.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200820031207_Transactions.cs" />
+    <Compile Remove="Data\Migrations\20200820031207_Transactions.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200820031503_Transactions.cs" />
+    <Compile Remove="Data\Migrations\20200820031503_Transactions.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200828165956_TransactionMissingFields.cs" />
+    <Compile Remove="Data\Migrations\20200828165956_TransactionMissingFields.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200829231903_test.cs" />
+    <Compile Remove="Data\Migrations\20200829231903_test.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+</Project>

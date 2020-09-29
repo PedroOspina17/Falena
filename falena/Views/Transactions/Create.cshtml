@@ -1,0 +1,204 @@
+﻿@model falena.Models.TransactionViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    var dateClass = "col-md-4";
+    if (ViewData["TransactionType"].ToString() != "1")
+    {
+        dateClass = "col-md-8";
+    }
+}
+
+<div class="row">
+    @if (ViewData["TransactionType"].ToString() == "1")
+    {
+        <h2>Sales</h2>
+    }
+    else
+    {
+        <h2>Purchases</h2>
+    }
+    <div class="col-12">
+        <form asp-action="Create">
+
+            <div class="row">
+                <div class="col">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input type="hidden" value="@ViewData["TransactionType"]" id="TransactionType"/>
+                        <label asp-for="Date" class="control-label"></label>
+                        <input asp-for="Date" class="form-control"/>
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 onlySales">
+                    <div class="form-group ">
+                        <label asp-for="SellerId" class="control-label">Seller</label>
+                        <select asp-for="SellerId" asp-items="@(new SelectList((List<Employee>)ViewData["Sellers"] ?? new List<Employee>(),"Id","Name"))" class="form-control">
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 onlySales">
+                    <div class="form-group ">
+                        <label class="control-label">Delivery amount</label>
+                        <input type="number" id="DeliveryValue" class="form-control" value="8000" step="1000" min="0" onchange="updateGranTotal()"/>
+                        @*<select asp-for="TransactionStatus" class="form-control d-none">
+                            <option value="1">Draft</option>
+                            <option value="2" selected="selected">Confirmed</option>
+                            <option value="3">Delivered</option>
+                            <option value="1">DeliveryConfirmed</option>
+                        </select>*@
+                        @*<span asp-validation-for="TransactionStatus" class="text-danger"></span>*@
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label asp-for="Observations" class="control-label"></label>
+                        <textarea asp-for="Observations" class="form-control" type="text" rows="3" ></textarea>
+                        <span asp-validation-for="Observations" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @if (ViewData["TransactionType"].ToString() == "1")
+                {
+                    <h4>Sales detail</h4>
+                }
+                else
+                {
+                    <h4>Purchases detail</h4>
+                }
+
+                <hr/>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="row">
+                                <div class="col-12 form-group">
+                                    <label class="control-label">Product</label>
+                                    <select class="form-control" id="Product" onchange="GetProductDetail()"></select>
+                                    <div class="row onlySales">
+                                        <div class="col-4 pr-0">
+                                            <div class="form-group">
+                                                <label class="control-label form-control-sm">Price list</label>
+                                                <label class="control-label form-control-sm p-0" id="PriceList"></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 p-0">
+                                            <div class="form-group">
+                                                <label class="control-label form-control-sm">Expected profits</label>
+                                                <label class="control-label form-control-sm p-0" id="ExpectedIncomes"></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 pr-0">
+                                            <div class="form-group">
+                                                <label class="control-label form-control-sm">SubTotal</label>
+                                                <label class="control-label form-control-sm p-0" id="Subtotal"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12 col-md-2 ">
+                            <div class="form-group">
+                                <label class="control-label">Final price</label>
+                                <input class="form-control" id="FinalPrice" type="number" step="1000" min="0" onchange="updateExpectedRevenew()"/>
+                                <span class="text-danger" id="ErrorFinalPrice"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-8 col-md-2 pr-0">
+                            <div class="col-12 form-group pr-0">
+                                <label class="control-label">Quantity</label>
+                                <input class="form-control" value="1" id="Quantity" type="number" step="1" min="1" onchange="updateSubTotal()"/>
+                                <span class="text-danger" id="ErrorQuantity"></span>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-1 ">
+                            <div class="form-group p-4">
+                                <input type="button" value="Add" class="btn btn-outline-warning btn-lg" onclick="AddDetail()"/>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="display: none" id="detailsTable">
+                <div class="col-12">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Subtotal</th>
+                            <th class="onlySales">Expected profits</th>
+                            <th class="w-25">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="TableBody">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="form-group onlySales">
+                        <h5 class="control-label">
+                            Total profits:
+                            <label class="" id="TotalIncomes"></label>
+                        </h5>
+                        -
+                    </div>
+
+                    <div class="form-group">
+                        <h4 class="control-label">
+                            Total:
+                            <label class="" id="Total"></label>
+                        </h4>
+                        <h4 class="control-label onlySales">
+                            Delivery included:
+                            <label class="" id="GranTotal"></label>
+                        </h4>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <input type="button" value="Save" class="btn btn-outline-success" onclick="saveChanges()" />
+                        @if (ViewData["TransactionType"].ToString() == "1")
+                        {
+
+                            <a asp-action="Sales" class="btn btn-outline-warning">Back to List</a>
+                        }
+                        else
+                        {
+                            <a asp-action="Purchases" class="btn btn-outline-warning">Back to List</a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/js/Transaction.js"></script>
+}
