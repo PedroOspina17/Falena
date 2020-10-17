@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Pedro\\Repos\\falena\\falena\\falena.csproj": {}
+    "C:\\Pedro\\Repos\\Falena\\falena\\falena.csproj": {}
   },
   "projects": {
-    "C:\\Pedro\\Repos\\falena\\falena\\falena.csproj": {
+    "C:\\Pedro\\Repos\\Falena\\falena\\falena.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Pedro\\Repos\\falena\\falena\\falena.csproj",
+        "projectUniqueName": "C:\\Pedro\\Repos\\Falena\\falena\\falena.csproj",
         "projectName": "falena",
-        "projectPath": "C:\\Pedro\\Repos\\falena\\falena\\falena.csproj",
+        "projectPath": "C:\\Pedro\\Repos\\Falena\\falena\\falena.csproj",
         "packagesPath": "C:\\Users\\pedro.ospina\\.nuget\\packages\\",
-        "outputPath": "C:\\Pedro\\Repos\\falena\\falena\\obj\\",
+        "outputPath": "C:\\Pedro\\Repos\\Falena\\falena\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pedro.ospina\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -25,6 +25,7 @@
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "http://nuget.corp.espn.pvt/nuget/": {},
           "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.hangfire.io/nuget/hangfire-pro": {},
           "https://pkgs.dev.azure.com/dtcise/_packaging/dtcise%40Local/nuget/v3/index.json": {}
         },
         "frameworks": {

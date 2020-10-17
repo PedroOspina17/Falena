@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3jGkW6uA/asU9XgXOEVK6H0ohYxPNzmTtCJj+a5d3FPOr74+uMwox6M3z98Hwuc/pGGhzRV4lpd3IU+YOYpf8g==",
+  "dgSpecHash": "tSQezx9QhARB3FQm1tGP1tAfGjY3Ea2mXs+i/OqnyJRU6ctAgm3Ta+nQfksO4oOcYedSH6L2baUYzvajDNdnvw==",
   "success": true,
-  "projectFilePath": "C:\\Pedro\\Repos\\falena\\falena\\falena.csproj",
+  "projectFilePath": "C:\\Pedro\\Repos\\Falena\\falena\\falena.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pedro.ospina\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\pedro.ospina\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.0.1\\automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",
